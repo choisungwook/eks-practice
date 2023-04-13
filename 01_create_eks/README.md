@@ -33,8 +33,8 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_private_subnets"></a> [private\_subnets](#input\_private\_subnets) | n/a | <pre>map(object({<br>    cidr_block        = string<br>    availability_zone = string<br>  }))</pre> | <pre>{<br>  "private_subnet_1": {<br>    "availability_zone": "ap-northeast-2a",<br>    "cidr_block": "10.0.3.0/24"<br>  },<br>  "private_subnet_2": {<br>    "availability_zone": "ap-northeast-2c",<br>    "cidr_block": "10.0.4.0/24"<br>  }<br>}</pre> | no |
-| <a name="input_public_subnets"></a> [public\_subnets](#input\_public\_subnets) | n/a | <pre>map(object({<br>    cidr_block        = string<br>    availability_zone = string<br>  }))</pre> | <pre>{<br>  "public_subnet_1": {<br>    "availability_zone": "ap-northeast-2a",<br>    "cidr_block": "10.0.1.0/24"<br>  },<br>  "public_subnet_2": {<br>    "availability_zone": "ap-northeast-2c",<br>    "cidr_block": "10.0.2.0/24"<br>  }<br>}</pre> | no |
+| <a name="input_private_subnets"></a> [private\_subnets](#input\_private\_subnets) | private subent | <pre>map(object({<br>    cidr_block        = string<br>    availability_zone = string<br>  }))</pre> | <pre>{<br>  "private_subnet_1": {<br>    "availability_zone": "ap-northeast-2a",<br>    "cidr_block": "10.0.3.0/24"<br>  },<br>  "private_subnet_2": {<br>    "availability_zone": "ap-northeast-2c",<br>    "cidr_block": "10.0.4.0/24"<br>  }<br>}</pre> | no |
+| <a name="input_public_subnets"></a> [public\_subnets](#input\_public\_subnets) | public subent | <pre>map(object({<br>    cidr_block        = string<br>    availability_zone = string<br>  }))</pre> | <pre>{<br>  "public_subnet_1": {<br>    "availability_zone": "ap-northeast-2a",<br>    "cidr_block": "10.0.1.0/24"<br>  },<br>  "public_subnet_2": {<br>    "availability_zone": "ap-northeast-2c",<br>    "cidr_block": "10.0.2.0/24"<br>  }<br>}</pre> | no |
 
 ## Outputs
 

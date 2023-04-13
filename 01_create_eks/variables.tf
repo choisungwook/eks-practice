@@ -3,6 +3,7 @@ variable "public_subnets" {
     cidr_block        = string
     availability_zone = string
   }))
+  description = "public subent"
   default = {
     public_subnet_1 = {
       cidr_block        = "10.0.1.0/24"
@@ -20,6 +21,7 @@ variable "private_subnets" {
     cidr_block        = string
     availability_zone = string
   }))
+  description = "private subent"
   default = {
     private_subnet_1 = {
       cidr_block        = "10.0.3.0/24"
