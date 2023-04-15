@@ -33,3 +33,15 @@ variable "private_subnets" {
     }
   }
 }
+
+variable "eks-cluster-name" {
+  type        = string
+  description = "EKS cluster name"
+  default     = "eks-cluster"
+}
+
+variable "eks-cluster-version" {
+  type        = string
+  description = "EKS cluster version"
+  default     = "1.24"
+}
