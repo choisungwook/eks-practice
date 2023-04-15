@@ -21,3 +21,12 @@ resource "aws_iam_role_policy_attachment" "AmazonEKSClusterPolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
   role       = aws_iam_role.eks-cluster.name
 }
+
+# create iam user for login console. IAM user name is eks-administrator and has role aws_iam_role.eks-cluster
+resource "aws_iam_user" "eks-administrator" {
+  name = "eks-administrator"
+
+  tags = {
+    Name = "${var.eks-cluster-name}-eks-administrator"
+  }
+}
