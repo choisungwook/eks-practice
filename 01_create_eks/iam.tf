@@ -60,10 +60,10 @@ resource "aws_iam_role_policy_attachment" "worker-node-AmazonEC2ContainerRegistr
   role       = aws_iam_role.worker_node.name
 }
 
-resource "aws_iam_user" "eks-administrator" {
-  name = "eks-administrator"
+# resource "aws_iam_user" "eks-administrator" {
+#   name = "eks-administrator"
 
-  tags = {
-    Name = "${var.eks-cluster-name}-eks-administrator"
-  }
-}
+#   tags = {
+#     Name = "${var.eks-cluster-name}-eks-administrator"
+#   }
+# }

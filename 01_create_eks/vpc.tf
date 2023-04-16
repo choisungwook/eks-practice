@@ -1,6 +1,9 @@
 resource "aws_vpc" "eks_vpc" {
-  cidr_block       = var.vpc-cidr
-  instance_tenancy = "default"
+  cidr_block           = var.vpc-cidr
+  instance_tenancy     = "default"
+  enable_dns_hostnames = true
+  enable_dns_support   = true
+
   tags = {
     Name = "eks-study"
   }

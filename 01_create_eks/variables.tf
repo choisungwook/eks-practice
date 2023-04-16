@@ -1,3 +1,9 @@
+variable "vpc-cidr" {
+  type        = string
+  description = "vpc cidr"
+  default     = "10.0.0.0/16"
+}
+
 variable "public_subnets" {
   type = map(object({
     cidr_block        = string
@@ -14,12 +20,6 @@ variable "public_subnets" {
       availability_zone = "ap-northeast-2c"
     }
   }
-}
-
-variable "vpc-cidr" {
-  type        = string
-  description = "vpc cidr"
-  default     = "10.0.0.0/16"
 }
 
 variable "private_subnets" {
@@ -40,6 +40,18 @@ variable "private_subnets" {
   }
 }
 
+variable "bastion-instance_type" {
+  type        = string
+  description = "bastion ec2 instance_type"
+  default     = "t2.nano"
+}
+
+variable "bastion-sshkey" {
+  type        = string
+  description = "bastion ec2 instance ssh key"
+  default     = "guro_home"
+}
+
 variable "eks-cluster-name" {
   type        = string
   description = "EKS cluster name"
@@ -55,19 +67,19 @@ variable "eks-cluster-version" {
 variable "eks-worker-nodes-desired-size" {
   type        = number
   description = "EKS worker nodes desired size"
-  default     = 3
+  default     = 1
 }
 
 variable "eks-worker-nodes-min-size" {
   type        = number
   description = "EKS worker nodes min size"
-  default     = 2
+  default     = 1
 }
 
 variable "eks-worker-nodes-max-size" {
   type        = number
   description = "EKS worker nodes max size"
-  default     = 3
+  default     = 1
 }
 
 # reference: https://docs.aws.amazon.com/ko_kr/eks/latest/userguide/retrieve-ami-id.html
