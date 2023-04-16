@@ -1,0 +1,17 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: basic-cluster # eks 이름
+  region: ap-northeast-2
+  version: "1.24" # 쿠버네티스 버전
+
+vpc:
+  cidr: "10.0.0.0/16" # eks클러스터에서 사용할 VPC의 CIDR
+
+managedNodeGroups:
+  - name: node-group-a
+    instanceType: t3.medium
+    desiredCapacity: 2
+    volumeSize: 20
+    privateNetworking: true
