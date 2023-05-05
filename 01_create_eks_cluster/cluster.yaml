@@ -11,7 +11,7 @@ vpc:
 
 managedNodeGroups:
   - name: node-group-a
-    instanceType: t3.medium
+    instanceType: t3.small
     desiredCapacity: 2
     volumeSize: 20
     privateNetworking: true
