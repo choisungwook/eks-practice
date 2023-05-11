@@ -1,5 +1,0 @@
-{
-  "yaml.schemas": {
-    "https://json.schemastore.org/yamllint.json": "file:///c%3A/Users/kgg19/github/terraform-eks-practice/01_create_eks/cluster.yaml"
-  }
-}

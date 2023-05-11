@@ -11,7 +11,19 @@ vpc:
 
 managedNodeGroups:
   - name: node-group-a
-    instanceType: t3.medium
-    desiredCapacity: 2
-    volumeSize: 20
+    instanceType: t3.small
+    desiredCapacity: 1
+    volumeSize: 10
     privateNetworking: true
+
+fargateProfiles:
+  - name: fp-default
+    selectors:
+      - namespace: default
+      - namespace: kube-system
+  - name: fp-dev
+    selectors:
+      - namespace: dev
+        labels:
+          env: dev
+          checks: passed

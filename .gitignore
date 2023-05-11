@@ -30,3 +30,6 @@ override.tf.json
 
 # lock hcl files
 .terraform.lock.hcl
+
+# vscode
+.vscode/
