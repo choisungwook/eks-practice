@@ -10,8 +10,10 @@ vpc:
   cidr: "10.0.0.0/16" # eks클러스터에서 사용할 VPC의 CIDR
 
 managedNodeGroups:
-  - name: node-group-a
-    instanceType: t3.small
-    desiredCapacity: 2
-    volumeSize: 20
-    privateNetworking: true
+- name: node-group-a
+  instanceType: t3.small
+  minSize: 2
+  maxSize: 3
+  desiredCapacity: 2
+  volumeSize: 10
+  privateNetworking: true
