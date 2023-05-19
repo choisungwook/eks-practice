@@ -2,7 +2,12 @@
 테라폼으로 EKS를 생성하는 예제입니다.
 
 # 2. 준비
-테라폼이 설치되어 있어야 합니다. 저는 v1.4.5을 사용했습니다.
+* IAM Administrator role
+* kubectl
+* eksctl
 
 # 3. 목차
-* eksctl로 cluster생성
+* [eksctl로 cluster생성](./01_create_eks_cluster/)
+* [eksctl로 fargate nodegroup 생성](./02_fargate_nodegroup/)
+* [control plane logging 활성화](./03_eks_logging/)
+* [aws managed prometheus](./aws_managed_prometheus/)
