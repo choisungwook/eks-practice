@@ -52,7 +52,7 @@ helm upgrade --install aws-load-balancer-controller eks/aws-load-balancer-contro
 ```
 
 # 예제 배포
-* manifest 파일 수정 -> service annotations필드를 수정
+* example 파일 수정 -> service annotations필드를 수정
 ```bash
 vi example.yaml
 
@@ -68,7 +68,7 @@ metadata:
 
 ```
 
-* manifest 배포 - NLB 생성
+* example 배포 - NLB 생성
 ```bash
 kubectl -n defualt apply -f example.yaml
 ```

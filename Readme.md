@@ -12,3 +12,5 @@
 * [control plane logging 활성화](./03_eks_logging/)
 * [aws managed prometheus](./aws_managed_prometheus/)
 * [dvwa 웹 애플리케이션](./dvwa_webapp/)
+* [external dns](./external_dns/)
+* [alb controller](./alb_controller/)
