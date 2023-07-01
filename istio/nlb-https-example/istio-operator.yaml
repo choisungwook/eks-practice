@@ -1,0 +1,44 @@
+apiVersion: install.istio.io/v1alpha1
+kind: IstioOperator
+metadata:
+  name: istiocontrolplane
+  namespace: istio-system
+spec:
+  profile: default
+  components:
+    pilot:
+      k8s:
+        resources:
+          requests:
+            cpu: "0.1"
+            memory: 100Mi
+          limits:
+            cpu: "0.3"
+            memory: 200Mi
+    ingressGateways:
+      - name: istio-ingressgateway
+        enabled: true
+        k8s:
+          # service:
+          #   externalTrafficPolicy: Local
+          service:
+            ports:
+              - name: http
+                port: 80
+                targetPort: 8080
+              - name: https
+                port: 443
+                targetPort: 8443
+              - name: helath
+                port: 15021
+                targetPort: 15021
+            type: LoadBalancer
+          serviceAnnotations:
+            service.beta.kubernetes.io/aws-load-balancer-name: istio-ingress-nlb
+            service.beta.kubernetes.io/aws-load-balancer-type: "external"
+            service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
+            service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"
+            service.beta.kubernetes.io/aws-load-balancer-healthcheck-port: "15021"
+            service.beta.kubernetes.io/aws-load-balancer-healthcheck-path: /healthz/ready
+            service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "443"
+            service.beta.kubernetes.io/aws-load-balancer-backend-protocol: https

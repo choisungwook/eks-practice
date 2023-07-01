@@ -8,10 +8,10 @@ eksctl 명령어로 eks cluster 생성
 
 # 생성 방법
 ```shell
-eksctl create clustser -f cluster.yaml
+eksctl create cluster -f cluster.yaml
 ```
 
 # 삭제 방법
 ```shell
-eksctl delete clustser -f cluster.yaml
+eksctl delete cluster -f cluster.yaml
 ```
