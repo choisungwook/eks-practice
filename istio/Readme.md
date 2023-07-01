@@ -3,8 +3,6 @@
 
 # 전제조건
 * alb controller 설치
-* aws ACM 리소스
-* aws route53
 
 # istioctl 설치
 ```bash
