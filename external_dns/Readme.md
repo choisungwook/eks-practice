@@ -36,17 +36,34 @@ eksctl create iamserviceaccount \
   --approve
 ```
 
-## 5. manifest 수정
-```bash
+## 5. manifest 배포
+* manifest 수정 - DOMAIN_FILTER을 aws route53 host zone으로 수정
+```yaml
 vi manifest.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+...
+spec:
+  template:
+    ...
+    spec:
+      containers:
+        - name: external-dns
+          args:
+            - --domain-filter=$DOMAIN_FILTER
 ```
 
-## 6. mainfest 배포
+* mainfest 배포
 ```bash
 export EXTERNALDNS_NS="externaldns"
 kubectl -n $EXTERNALDNS_NS apply -f manifest.yaml
 ```
 
+# 삭제
+```bash
+kubectl -n $EXTERNALDNS_NS delete -f manifest.yaml
+```
 
 # 참고자료
 * https://repost.aws/ko/knowledge-center/eks-set-up-externaldns
