@@ -1,0 +1,38 @@
+apiVersion: install.istio.io/v1alpha1
+kind: IstioOperator
+metadata:
+  name: istiocontrolplane
+  namespace: istio-system
+spec:
+  profile: default
+  components:
+    pilot:
+      k8s:
+        resources:
+          requests:
+            cpu: "0.1"
+            memory: 100Mi
+          limits:
+            cpu: "0.3"
+            memory: 200Mi
+    ingressGateways:
+      - name: istio-ingressgateway
+        enabled: true
+        k8s:
+          # service:
+          #   externalTrafficPolicy: Local
+          service:
+            ports:
+              - name: http
+                port: 80
+                targetPort: 8080
+              - name: https
+                port: 443
+                targetPort: 8443
+              - name: helath
+                port: 15021
+                targetPort: 15021
+            type: NodePort
+          serviceAnnotations:
+            alb.ingress.kubernetes.io/healthcheck-path: /healthz/ready
+            alb.ingress.kubernetes.io/healthcheck-port: "15021"
