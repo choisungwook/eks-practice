@@ -12,22 +12,5 @@ curl -L https://istio.io/downloadIstio | sh -
 export PATH=$HOME/.istioctl/bin:$PATH
 ```
 
-# istio 설치
-```bash
-istioctl install -f istio-operator.yaml
-```
-
-* 확인
-```bash
-kubectl get pods -n istio-system
-```
-
-# 삭제
-```bash
-istioctl uninstall --purge
-```
-
-# 참고자료
-* https://istio.io/latest/docs/setup/install/istioctl/
-* https://www.clud.me/11354dd3-48f3-454d-917f-eca8d975e034
-* https://itnp.kr/post/install-istio
+# 예제 목록
+- [nlb with https](./nlb-https-example/)

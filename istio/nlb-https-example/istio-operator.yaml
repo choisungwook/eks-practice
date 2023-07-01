@@ -30,14 +30,15 @@ spec:
                 port: 443
                 targetPort: 8443
               - name: helath
-                port: 15020
-                targetPort: 15020
+                port: 15021
+                targetPort: 15021
             type: LoadBalancer
           serviceAnnotations:
+            service.beta.kubernetes.io/aws-load-balancer-name: istio-ingress-nlb
             service.beta.kubernetes.io/aws-load-balancer-type: "external"
             service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
             service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"
-            service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "443"
-            service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
-            service.beta.kubernetes.io/aws-load-balancer-healthcheck-port: "15020"
+            service.beta.kubernetes.io/aws-load-balancer-healthcheck-port: "15021"
             service.beta.kubernetes.io/aws-load-balancer-healthcheck-path: /healthz/ready
+            service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "443"
+            service.beta.kubernetes.io/aws-load-balancer-backend-protocol: https
