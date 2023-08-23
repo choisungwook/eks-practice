@@ -52,41 +52,12 @@ helm upgrade --install aws-load-balancer-controller eks/aws-load-balancer-contro
 ```
 
 # 예제 배포
-* example 파일 수정 -> service annotations필드를 수정
-```bash
-vi example.yaml
+* [NLB](././nlb_example.yaml)
+* [ALB](./alb_example.yaml)
 
-apiVersion: v1
-kind: Service
-metadata:
-  name: echo-server
-  namespace: default
-  annotations:
-    ...
-    external-dns.alpha.kubernetes.io/hostname: "change here" # aws route53 hostzone
-    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: "change here" # aws acm id
-
-```
-
-* example 배포 - NLB 생성
-```bash
-kubectl -n defualt apply -f example.yaml
-```
-
-* 쿠버네티스 service에 EXTERNAL-IP확인(pending이면 ALB controller 설치가 잘못됨)
-```bash
-kubectl -n default get svc
-NAME ...      EXTERNAL-IP
-echo-server   someting.ap-northeast-2.amazonaws.com
-```
-
-* 웹 브라우저에서 aws NLB dns주소로 접속
 
 # 삭제
-* 예제 삭제
-```bash
-kubectl -n default delete -f example.yaml
-```
+> 배포했던 예제를 꼭 삭제 후에 alb controller을 삭제해주세요
 
 ```bash
 helm -n kube-system delete aws-load-balancer-controller

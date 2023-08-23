@@ -1,0 +1,38 @@
+# kubectl apply nlb.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-nlb-test
+spec:
+  selector:
+    matchLabels:
+      app: nginx-nlb-test
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nginx-nlb-test
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-nlb-test
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
+    service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-port: "80"
+spec:
+  type: LoadBalancer
+  loadBalancerClass: service.k8s.aws/nlb
+  selector:
+    app: nginx-nlb-test
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
