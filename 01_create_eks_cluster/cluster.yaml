@@ -12,6 +12,7 @@ vpc:
 managedNodeGroups:
 - name: node-group-a
   instanceType: t3.small
+  spot: true
   minSize: 2
   maxSize: 3
   desiredCapacity: 2
