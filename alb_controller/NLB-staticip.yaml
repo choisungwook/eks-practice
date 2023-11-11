@@ -1,0 +1,92 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: echo-server
+  namespace: default
+  labels:
+    app: echo-server
+spec:
+  selector:
+    matchLabels:
+      app: echo-server
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: echo-server
+    spec:
+      topologySpreadConstraints:
+      - maxSkew: 1
+        whenUnsatisfiable: ScheduleAnyway
+        topologyKey: topology.kubernetes.io/zone
+        labelSelector:
+          matchLabels:
+            app: echo-server
+      containers:
+      - name: main
+        image: k8s.gcr.io/echoserver:1.6
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: static-echo-server
+  namespace: default
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: external
+    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
+    service.beta.kubernetes.io/aws-load-balancer-scheme: internal
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-port: "8080"
+    # Change subnet id
+    service.beta.kubernetes.io/aws-load-balancer-subnets: "subnet-0fcd9aa018d5ac9d7,subnet-091901b5586142e18,subnet-0e0ffe959b62bd667"
+    # Change private ip. It shoud be matched order subnet-id below
+    service.beta.kubernetes.io/aws-load-balancer-private-ipv4-addresses: "10.0.128.140,10.0.96.140,10.0.160.140"
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: "http"
+spec:
+  loadBalancerClass: service.k8s.aws/nlb
+  type: LoadBalancer
+  selector:
+    app: echo-server
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 8080
+  - name: https
+    protocol: TCP
+    port: 443
+    targetPort: 8080
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: echo-server
+#   namespace: default
+#   annotations:
+#     service.beta.kubernetes.io/aws-load-balancer-type: external
+#     service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
+#     service.beta.kubernetes.io/aws-load-balancer-scheme: internal
+#     service.beta.kubernetes.io/aws-load-balancer-healthcheck-port: "8080"
+#     service.beta.kubernetes.io/aws-load-balancer-backend-protocol: "http"
+# spec:
+#   loadBalancerClass: service.k8s.aws/nlb
+#   type: LoadBalancer
+#   selector:
+#     app: echo-server
+#   ports:
+#   - name: http
+#     protocol: TCP
+#     port: 80
+#     targetPort: 8080
+#   - name: https
+#     protocol: TCP
+#     port: 443
+#     targetPort: 8080
