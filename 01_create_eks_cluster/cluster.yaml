@@ -4,14 +4,15 @@ kind: ClusterConfig
 metadata:
   name: basic-cluster # eks 이름
   region: ap-northeast-2
-  version: "1.24" # 쿠버네티스 버전
+  version: "1.28" # 쿠버네티스 버전
 
 vpc:
   cidr: "10.0.0.0/16" # eks클러스터에서 사용할 VPC의 CIDR
 
 managedNodeGroups:
 - name: node-group-a
-  instanceType: t3.small
+  instanceType: t3.medium
+  spot: true
   minSize: 2
   maxSize: 3
   desiredCapacity: 2
