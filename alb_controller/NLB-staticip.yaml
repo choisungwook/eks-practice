@@ -17,7 +17,7 @@ spec:
     spec:
       topologySpreadConstraints:
       - maxSkew: 1
-        whenUnsatisfiable: ScheduleAnyway
+        whenUnsatisfiable: DoNotSchedule
         topologyKey: topology.kubernetes.io/zone
         labelSelector:
           matchLabels:
