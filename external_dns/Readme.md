@@ -63,6 +63,10 @@ kubectl -n $EXTERNALDNS_NS apply -f manifest.yaml
 # 삭제
 ```bash
 kubectl -n $EXTERNALDNS_NS delete -f manifest.yaml
+
+# IAM policy 삭제
+POLICY_ARN=$(aws iam list-policies --query 'Policies[?PolicyName==`AllowExternalDNSUpdates`].Arn' --output text)
+aws iam delete-policy --policy-arn $POLICY_ARN
 ```
 
 # 참고자료
