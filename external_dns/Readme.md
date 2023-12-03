@@ -37,27 +37,10 @@ eksctl create iamserviceaccount \
 ```
 
 ## 5. manifest 배포
-* manifest 수정 - DOMAIN_FILTER을 aws route53 host zone으로 수정
-```yaml
-vi manifest.yaml
+* manifest 수정 - DOMAIN_FILTER을 aws Route53 NS 도메인으로 수정
 
-apiVersion: apps/v1
-kind: Deployment
-...
-spec:
-  template:
-    ...
-    spec:
-      containers:
-        - name: external-dns
-          args:
-            - --domain-filter=$DOMAIN_FILTER
-```
-
-* mainfest 배포
 ```bash
-export EXTERNALDNS_NS="externaldns"
-kubectl -n $EXTERNALDNS_NS apply -f manifest.yaml
+DOMAIN_FILTER="YOUR_DOMAIN" envsubst < manifest.yaml | kubectl apply -n $EXTERNALDNS_NS -f -
 ```
 
 # 삭제
