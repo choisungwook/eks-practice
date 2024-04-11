@@ -33,3 +33,7 @@ override.tf.json
 
 # vscode
 .vscode/
+
+# python
+venv/
+__pycache__/
