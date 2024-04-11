@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: web-app
+  namespace: default
+  annotations:
+    # 여러 분의 IAM role로 교체하세요
+    eks.amazonaws.com/role-arn: arn:aws:iam::467606240901:role/irsa-web-app
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: irsa-example
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: irsa-example
+  template:
+    metadata:
+      labels:
+        app: irsa-example
+    spec:
+      serviceAccountName: web-app
+      containers:
+      - name: irsa-example
+        image: choisunguk/fastapi_get_bucket:v3
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "200m"
+        ports:
+        - containerPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: irsa-example
+  namespace: default
+spec:
+  selector:
+    app: irsa-example
+  ports:
+  - port: 80
+    targetPort: 8000

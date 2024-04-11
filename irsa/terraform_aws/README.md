@@ -6,6 +6,9 @@
 * [AWS IAM User 생성](./hardcoding_user.tf)
 * [AWS IAM Role 생성](./assume_role.tf)
   * [terraform 변수](./terraform.tfvars)에서 aws_root_account_id 변수 값을 여러분의 AWS account ID로 변경하세요
+* [EKS IRSA 생성](./irsa.tf)
+  * [terraform 변수](./terraform.tfvars)에서 EKS OIDC Connect ID, arn, serviceaccount name을 입력하세요
+  * serviceaccount name은 [쿠버네티스 manifest 예제](../k8s_manifests/irsa.yaml)를 참고하세요
 
 # 생성 방법
 
