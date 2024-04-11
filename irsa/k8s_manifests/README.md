@@ -8,3 +8,5 @@
   * [파이썬 코드 링크](../web_applicationsv1/v2/app/main.py)
   * EKS Managed Node IAM role에도 Assume Role을 부여해야 합니다.
 * [instance profile 사용하는 예제](./assume_role.yaml)
+* [EKS IRSA 예제](./irsa.yaml)
+  * AWS IAM Role생성은 [테라폼 코드](../terraform_aws/irsa.tf)를 참고해주세요
