@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: instance-profile
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: instance-profile
+  template:
+    metadata:
+      labels:
+        app: instance-profile
+    spec:
+      containers:
+      - name: instance-profile
+        image: choisunguk/fastapi_get_bucket:v3
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "200m"
+        ports:
+        - containerPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: instance-profile
+  namespace: default
+spec:
+  selector:
+    app: instance-profile
+  ports:
+  - port: 80
+    targetPort: 8000
