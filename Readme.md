@@ -15,3 +15,4 @@
 * [external dns](./external_dns/)
 * [alb controller](./alb_controller/)
 * [istio with istioctl](./istio/)
+* [IRSA 예제](./irsa)

@@ -4,11 +4,9 @@
 
 # 실행 방법
 
-1. AWS IAM user 생성과 Access key, Secret key 생성, S3 버킷권한 추가
+1. AWS IAM user 생성과 Access key, Secret key 생성, S3 버킷권한 추가([테라폼 코드](../../terraform_aws/hardcoding_user.tf)를 참고)
 
-* [테라폼 코드](../../terraform_aws/hardcoding_user.tf)를 참고
-
-1. 환경변수 초기화
+2. 환경변수 초기화
 
 ```sh
 export ACCESS_KEY=""

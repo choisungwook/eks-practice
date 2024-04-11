@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: access-key
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: access-key
+  template:
+    metadata:
+      labels:
+        app: access-key
+    spec:
+      containers:
+      - name: access-key
+        image: choisunguk/fastapi_get_bucket:v1
+        # 여러 분의 IAM user access key, secret key를 입력하세요
+        env:
+        - name: ACCESS_KEY
+          value: xxxxxxxxxx
+        - name: SECRET_KEY
+          value: xxxxxxxxxx
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "200m"
+        ports:
+        - containerPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: access-key
+  namespace: default
+spec:
+  selector:
+    app: access-key
+  ports:
+  - port: 80
+    targetPort: 8000
