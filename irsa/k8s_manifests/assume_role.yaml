@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: assume-role
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: assume-role
+  template:
+    metadata:
+      labels:
+        app: assume-role
+    spec:
+      containers:
+      - name: assume-role
+        image: choisunguk/fastapi_get_bucket:v2
+        # 여러 분의 assume role arn으로 변경하세요
+        env:
+        - name: ASSUME_ROLE_ARN
+          value: "arn:aws:iam::467606240901:role/web-app-assume-role"
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "200m"
+        ports:
+        - containerPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: assume-role
+  namespace: default
+spec:
+  selector:
+    app: assume-role
+  ports:
+  - port: 80
+    targetPort: 8000
