@@ -7,3 +7,4 @@
 * [Assume role를 로직을 구현](./assume_role.yaml)
   * [파이썬 코드 링크](../web_applicationsv1/v2/app/main.py)
   * EKS Managed Node IAM role에도 Assume Role을 부여해야 합니다.
+* [instance profile 사용하는 예제](./assume_role.yaml)
