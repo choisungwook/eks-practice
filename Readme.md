@@ -16,3 +16,4 @@
 * [alb controller](./alb_controller/)
 * [istio with istioctl](./istio/)
 * [IRSA 예제](./irsa)
+* [EKS IRSA JWT 토큰 검증하는 파이썬코드](./irsa/jwt_validation)
